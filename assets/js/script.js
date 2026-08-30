@@ -256,10 +256,10 @@ const projectDatabase = {
     title: "MFQOD (منصة مفقود) — AI-Powered Lost & Found Social Network",
     client: "AI Social Platform Project",
     badge: "🤖 AI Social Network",
-    img: "./assets/images/mfqod/posts.jpg",
+    img: "./assets/images/posts.jpg",
     gallery: [
-      { name: "📱 Social Feed & Lost Post", src: "./assets/images/mfqod/posts.jpg" },
-      { name: "👤 CEO & User Profile Dashboard", src: "./assets/images/mfqod/profile.jpg" }
+      { name: "📱 Social Feed & Lost Post", src: "./assets/images/posts.jpg" },
+      { name: "👤 CEO & User Profile Dashboard", src: "./assets/images/profile.jpg" }
     ],
     desc: "A full-scale social platform built with Python and modern Web technologies dedicated to reuniting lost valuables and official documents with their owners through computer-vision and textual AI matching.",
     features: [
