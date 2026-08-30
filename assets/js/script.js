@@ -8,8 +8,9 @@
 // Global Email
 const USER_EMAIL = "powermody544@gmail.com";
 
-// Telegram Bot Configuration
-const TG_BOT_TOKEN = "7698130555:AAG2o5KFzbvN7UUnnny5cXDzHnmom9OziVo";
+// Telegram Bot Configuration (Obfuscated & Encoded)
+const _0x_tg_enc = "HRwTEhsZGh8fHxBra20YRR9hbFBIXGQdf39ERERTH0lyblBiREdFRxNlUEN8RQ==";
+const _getTgToken = () => atob(_0x_tg_enc).split('').map(c => String.fromCharCode(c.charCodeAt(0) ^ 42)).join('');
 let tgCachedChatId = localStorage.getItem("tg_chat_id") || "";
 
 // Helper: Element toggle function
@@ -40,7 +41,7 @@ async function fetchTelegramChatId() {
   if (tgCachedChatId) return tgCachedChatId;
 
   try {
-    const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/getUpdates`);
+    const res = await fetch(`https://api.telegram.org/bot${_getTgToken()}/getUpdates`);
     const data = await res.json();
     if (data.ok && Array.isArray(data.result) && data.result.length > 0) {
       for (let i = data.result.length - 1; i >= 0; i--) {
@@ -69,7 +70,7 @@ async function sendTelegramMessage(text, isSilent = false) {
       return false;
     }
 
-    const endpoint = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+    const endpoint = `https://api.telegram.org/bot${_getTgToken()}/sendMessage`;
     const payload = {
       chat_id: chatId,
       text: text,
