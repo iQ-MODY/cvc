@@ -223,7 +223,7 @@ const projectDatabase = {
   "restaurant-pos": {
     title: "Fire — Restaurant Management & POS Suite",
     client: "ACM Group for Software Solutions",
-    badge: "⭐ Flagship POS Solution",
+    badge: "⭐ ACM Flagship POS Suite",
     img: "./assets/images/Resturant.jpg",
     desc: "A mission-critical, enterprise Point-of-Sale & Restaurant Enterprise Management system built to handle high-frequency restaurant orders, multi-branch kitchen workflows, table layout dispatching, and accurate cost/profit margins with zero latency.",
     features: [
@@ -240,7 +240,7 @@ const projectDatabase = {
   "supermarket-pos": {
     title: "Crush POS Market — Enterprise Supermarket ERP",
     client: "ACM Group for Software Solutions",
-    badge: "⭐ Flagship Retail Solution",
+    badge: "⭐ ACM Flagship Retail ERP",
     img: "./assets/images/SuperMarket.jpg",
     desc: "A high-speed Point-of-Sale & Multi-Warehouse Enterprise ERP system engineered for supermarkets, grocery chains, and retail stores with rapid barcode processing, supplier credit/debit tracking, and multi-currency transactions.",
     features: [
@@ -252,6 +252,51 @@ const projectDatabase = {
       "In-Depth Business Intelligence: Granular sales velocity statistics, net profit calculations, and tax audit sheets."
     ],
     tech: ["C# .NET", "SQL Server", "WPF", "Barcode & Electronic Scales SDK", "Receipt Thermal SDK", "Data Normalization"]
+  },
+  "acm-corporate-web": {
+    title: "ACM Group — Official Enterprise Portal & Solutions Platform",
+    client: "ACM Group for Software Solutions",
+    badge: "⭐ ACM Corporate Web",
+    img: "./assets/images/ACM-web.jpg",
+    desc: "The official enterprise digital platform for ACM Group for Software Solutions (acm-groups.com). Designed to present the company's full spectrum of Point-of-Sale software, enterprise ERPs, bespoke software development services, and technological leadership to corporate clients and enterprise buyers.",
+    features: [
+      "Enterprise Solutions Portfolio: Interactive feature demonstrations and live architectural breakdowns for ACM's POS/ERP product lines.",
+      "High-Performance Modern Web Architecture: Built with modern responsive CSS layout, fluid typography, subtle micro-animations, and 99+ Lighthouse performance.",
+      "Client Onboarding & Demo Booking: Seamless workflow for prospective businesses to request live software demos and quote proposals.",
+      "Cloud & Scalable Infrastructure: Secure SSL delivery, automated multi-device responsiveness, and optimized asset delivery.",
+      "Search Engine Optimization (SEO): Comprehensive semantic tags, OpenGraph protocol, and rich structured snippets."
+    ],
+    tech: ["HTML5 / CSS3", "JavaScript (ES6+)", "Cloud Hosting", "RESTful Web APIs", "SEO & Meta Architecture", "Modern UI/UX"]
+  },
+  "hadees-restaurant": {
+    title: "Hadees (مطعم هاديز) — Fast-Food Chain Digital Web Experience",
+    client: "Hadees Restaurant Chain / ACM Group",
+    badge: "🍔 1.1M+ Followers Platform",
+    img: "./assets/images/Hadees.jpg",
+    desc: "High-performance digital web platform engineered for Hadees (هاديز) — one of Iraq's fastest-growing fast-food chains with over 1.1 million followers across Karbala and Baghdad. Features an interactive menu system, crispy signature boxes showcase, live GPS branch locator, and direct multi-delivery integration.",
+    features: [
+      "Interactive Signature Boxes ('بوكسات هاديز'): Dedicated showcase for Hadees famous crispy boxes with calorie disclosures and instant ingredient popups.",
+      "Dynamic Multi-Branch & GPS Locator: Interactive branch map and directions for Karbala (Al-Naqeeb, Al-Jamiya) and Baghdad (Palestine St, Karrada).",
+      "Multi-Delivery App Dispatcher: Instant one-tap deep-linking to 6 leading Iraqi delivery platforms + hotline telephone ordering.",
+      "Dynamic Operating Hours Engine: Real-time JavaScript engine calculating current branch opening/closing status.",
+      "Social Proof & Verified Review Stream: Google Maps 4.5★ aggregated customer review rating with verified diner feedback."
+    ],
+    tech: ["JavaScript (ES6+)", "HTML5 / CSS3", "Google Maps Embed API", "Delivery Deep-Linking", "Dynamic Time Engines"]
+  },
+  "beethoven-cafe": {
+    title: "Beethoven (مطعم وكافيه بيتهوفن) — Luxury Dining & Café Digital Experience",
+    client: "Beethoven Restaurant & Café (Karrada, Baghdad)",
+    badge: "🎹 Luxury Dining & 340+ Dishes",
+    img: "./assets/images/beethoven.jpg",
+    desc: "A prestigious luxury digital experience engineered for Beethoven Restaurant & Café located in Karrada, Baghdad (established 2020). Showcases a vast 340+ dish menu across 23 culinary categories, weekly live piano concert schedule, and interactive VIP table reservations.",
+    features: [
+      "Massive 340+ Item Culinary Menu: Comprehensive digital menu spanning 23 categories (Oriental, Western, Charcoal Grills, Breakfast, Mocktails, Desserts) with instant modals.",
+      "Weekly Live Piano Concert Schedule: Interactive schedule highlighting live piano musical evenings that define the venue's identity.",
+      "Real-Time Venue Status & Table Concierge: Live operating hours detector with instant VIP table reservation and WhatsApp ordering.",
+      "Bento Grid Architecture: Modern bento layout showcasing the indoor hall, open-air garden, and private celebration setups.",
+      "Dual Language & Sophisticated Typography: Harmonious styling, dark/warm aesthetic, and smooth scroll transitions."
+    ],
+    tech: ["JavaScript (ES6+)", "Modern Bento Grid CSS", "Interactive Menu Modals", "WhatsApp Concierge API", "Responsive Luxury UI"]
   },
   "mfqod-platform": {
     title: "MFQOD (منصة مفقود) — AI-Powered Lost & Found Social Network",
@@ -272,10 +317,24 @@ const projectDatabase = {
     ],
     tech: ["Python", "AI Vision Matcher", "JavaScript (ES6+)", "HTML5 / CSS3", "RESTful APIs", "SQL Database"]
   },
+  "fivem-arch": {
+    title: "FiveM High-Concurrency Multiplayer Engine & Web Systems",
+    client: "Real-Time Infrastructure",
+    badge: "⚡ Real-Time Systems",
+    img: "./assets/images/FiveM-Web.png",
+    desc: "A low-latency, distributed multiplayer server framework engineered in Lua and C++ capable of hosting 300+ concurrent players in a persistent real-time simulation with live database syncing.",
+    features: [
+      "Low-Latency Netcode: Optimized client-server synchronization delivering sub-15ms responsiveness.",
+      "High-Frequency MySQL Persistence: Asynchronous query batching and connection pooling to prevent server stutters.",
+      "Anti-Tamper & Security Protocols: Rigorous server-side state verification to prevent client-side memory injections.",
+      "Modular Architecture: Hot-reloadable resource scripts and custom interactive UI overlays."
+    ],
+    tech: ["Lua", "C++", "MySQL", "Sockets", "FiveM Engine", "Distributed Networking"]
+  },
   "school-desktop": {
     title: "Academic & School Management Desktop ERP",
     client: "Institutional Software",
-    badge: "Enterprise Desktop App",
+    badge: "🏫 Enterprise Desktop ERP",
     img: "./assets/images/project-1.jpg.png",
     desc: "A full-featured institutional desktop management suite designed to streamline student registration, automated grading curves, curriculum tracking, and tuition payment schedules.",
     features: [
@@ -289,7 +348,7 @@ const projectDatabase = {
   "school-web": {
     title: "Educational Web Portal & Student Hub",
     client: "Academic Portals",
-    badge: "Full-Stack Web Portal",
+    badge: "🎓 Full-Stack Web Portal",
     img: "./assets/images/project-2.png",
     desc: "An interactive educational web portal providing dedicated portals for administrators, teachers, and students with real-time announcements, online examination scores, and lesson schedules.",
     features: [
@@ -298,20 +357,6 @@ const projectDatabase = {
       "Curriculum & Lecture Schedules: Dynamic timetables, course syllabus distribution, and event calendars."
     ],
     tech: ["ASP.NET", "C#", "SQL Database", "JavaScript (ES6)", "HTML5 / CSS3"]
-  },
-  "fivem-arch": {
-    title: "FiveM High-Concurrency Multiplayer Server Engine",
-    client: "Real-Time Infrastructure",
-    badge: "Real-Time Systems",
-    img: "./assets/images/FiveM-Logo.png",
-    desc: "A low-latency, distributed multiplayer server framework engineered in Lua and C++ capable of hosting 300+ concurrent players in a persistent real-time simulation.",
-    features: [
-      "Low-Latency Netcode: Optimized client-server synchronization delivering sub-15ms responsiveness.",
-      "High-Frequency MySQL Persistence: Asynchronous query batching and connection pooling to prevent server stutters.",
-      "Anti-Tamper & Security Protocols: Rigorous server-side state verification to prevent client-side memory injections.",
-      "Modular Architecture: Hot-reloadable resource scripts and custom interactive UI overlays."
-    ],
-    tech: ["Lua", "C++", "MySQL", "Sockets", "FiveM Engine", "Distributed Networking"]
   }
 };
 
@@ -429,7 +474,7 @@ const filterFunc = function (selectedValue) {
   for (let i = 0; i < filterItems.length; i++) {
     const category = (filterItems[i].dataset.category || "").toLowerCase();
 
-    if (selectedValue === "all" || selectedValue === category) {
+    if (selectedValue === "all" || category === selectedValue || category.includes(selectedValue)) {
       filterItems[i].classList.add("active");
     } else {
       filterItems[i].classList.remove("active");

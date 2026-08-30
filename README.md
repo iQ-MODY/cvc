@@ -1,1 +1,1 @@
-# (https://iq-mody.github.io/cvc/)
+# iq-mody.github.io/cvc/
