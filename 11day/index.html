@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#260817">
+<title>11:11 — لحظة لفاطمة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500&family=Cormorant+Garamond:wght@300;500&display=swap" rel="stylesheet">
+<style>
+/* ========== 1. Tokens ========== */
+:root{
+  --burgundy:#430D25; --wine:#260817; --blush:#F2C6D3; --ivory:#FFF5F0; --rose:#C99A8B;
+  --serif:'Amiri','Traditional Arabic','Times New Roman',serif;
+  --sans:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif;
+  --num:'Cormorant Garamond','Georgia',serif;
+  --glass:rgba(255,245,240,.05); --line:rgba(201,154,139,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:var(--wine)}
+body{
+  font-family:var(--sans);color:var(--ivory);line-height:1.9;overflow-x:hidden;
+  background:radial-gradient(120% 80% at 50% 0%,var(--burgundy) 0%,var(--wine) 60%) fixed;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  opacity:0;transition:opacity 1.2s ease;
+}
+body.ready{opacity:1}
+body.locked{overflow:hidden;height:100%}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+canvas#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+section{padding:clamp(72px,12vh,140px) 22px;max-width:980px;margin:0 auto;text-align:center}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,6vw,46px);color:var(--blush);
+  text-shadow:0 0 28px rgba(242,198,211,.25);margin-bottom:14px}
+.sub{color:var(--rose);font-weight:300;margin-bottom:44px;font-size:clamp(15px,3.6vw,18px)}
+.rule{width:64px;height:1px;margin:0 auto 26px;background:linear-gradient(90deg,transparent,var(--rose),transparent)}
+
+/* ========== 2. Buttons ========== */
+.btn{
+  display:inline-block;padding:15px 34px;border-radius:999px;font-size:17px;letter-spacing:.3px;
+  color:var(--wine);background:linear-gradient(135deg,var(--blush),var(--rose));
+  box-shadow:0 8px 32px rgba(201,154,139,.28),inset 0 1px 0 rgba(255,255,255,.5);
+  transition:transform .35s ease,box-shadow .35s ease;text-decoration:none;font-weight:500
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(242,198,211,.38)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--blush);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:var(--glass)}
+
+/* ========== 3. Intro overlay ========== */
+#intro{
+  position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:24px;text-align:center;
+  background:radial-gradient(90% 70% at 50% 40%,#3a0b21 0%,var(--wine) 70%);
+  transition:opacity 1.6s ease,transform 1.6s ease,filter 1.6s ease,visibility 1.6s;
+}
+#intro.leave{opacity:0;transform:scale(1.15);filter:blur(14px);visibility:hidden;pointer-events:none}
+#intro .big{font-family:var(--num);font-weight:300;font-size:clamp(84px,26vw,190px);line-height:1;letter-spacing:6px;
+  color:var(--ivory);direction:ltr;text-shadow:0 0 40px rgba(242,198,211,.55),0 0 110px rgba(201,154,139,.35);
+  animation:pulse 4s ease-in-out infinite}
+#intro .tag{font-family:var(--num);font-style:italic;letter-spacing:4px;color:var(--rose);direction:ltr;font-size:clamp(15px,4vw,20px)}
+#intro .line{font-family:var(--serif);font-size:clamp(22px,5.5vw,32px);margin:34px 0 28px;color:var(--blush)}
+@keyframes pulse{50%{text-shadow:0 0 56px rgba(242,198,211,.8),0 0 140px rgba(201,154,139,.5)}}
+.fade-in{opacity:0;animation:fin 1.6s ease forwards}
+.d1{animation-delay:.6s}.d2{animation-delay:1.6s}.d3{animation-delay:2.8s}.d4{animation-delay:3.8s}
+@keyframes fin{to{opacity:1}}
+
+/* ========== 4. Hero ========== */
+#hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.from{font-family:var(--serif);color:var(--rose);font-size:clamp(20px,4.6vw,26px);margin-bottom:26px;line-height:1.7}
+#hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,8.4vw,68px);line-height:1.5;color:var(--ivory);
+  text-shadow:0 0 36px rgba(242,198,211,.3)}
+#hero h1 em{font-style:normal;color:var(--blush)}
+#hero p.lead{margin:26px auto 38px;max-width:30em;color:rgba(255,245,240,.78);font-size:clamp(16px,3.8vw,20px);font-weight:300}
+.clock{position:relative;width:clamp(150px,42vw,200px);aspect-ratio:1;display:grid;place-items:center;direction:ltr}
+.clock svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 60s linear infinite}
+.clock .t{font-family:var(--num);font-weight:300;font-size:clamp(38px,11vw,54px);letter-spacing:2px;color:var(--ivory);
+  text-shadow:0 0 22px rgba(242,198,211,.6)}
+.clock .t i{font-style:normal;animation:blink 2s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scroll-hint{margin-top:40px;color:var(--rose);font-size:13px;letter-spacing:2px;opacity:.7;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* ========== 5. Reason cards ========== */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.card{perspective:900px;height:170px;display:block;width:100%}
+.card .in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.card.open .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);
+  background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.face.front .n{font-family:var(--num);font-size:44px;font-weight:300;color:var(--blush);line-height:1;direction:ltr}
+.face.front svg{width:16px;height:16px;margin-top:12px;fill:var(--rose);opacity:.85}
+.face.back{transform:rotateY(180deg);background:linear-gradient(160deg,rgba(242,198,211,.14),rgba(67,13,37,.55));
+  font-family:var(--serif);font-size:clamp(16px,3.9vw,19px);line-height:1.75;color:var(--ivory)}
+.card:focus-visible{outline:2px solid var(--blush);outline-offset:3px;border-radius:18px}
+.counter{margin-top:26px;color:var(--rose);font-size:14px;font-weight:300;direction:ltr}
+
+/* ========== 6. Music ========== */
+.music{max-width:520px;margin:0 auto;padding:30px 22px;border-radius:26px;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(255,245,240,.07),rgba(38,8,23,.4));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.disc{width:104px;height:104px;margin:0 auto 20px;border-radius:50%;position:relative;
+  background:conic-gradient(from 0deg,#260817,#5a1736,#260817,#3b0f27,#260817);border:1px solid var(--line);
+  box-shadow:0 0 36px rgba(201,154,139,.25)}
+.disc::after{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--rose);box-shadow:0 0 0 6px var(--wine)}
+.disc.on{animation:spin 8s linear infinite}
+.music .note{color:var(--rose);font-size:14px;font-weight:300;margin:16px 0 4px}
+#player{margin-top:20px;display:none}
+#player.show{display:block}
+#player iframe{width:100%;border:0;border-radius:14px;display:block}
+#player audio{width:100%}
+.msg-unset{color:var(--rose);font-size:14px;margin-top:6px}
+.music .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ========== 7. Future ========== */
+.future{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.fc{padding:30px 22px;border-radius:20px;border:1px solid var(--line);background:var(--glass);
+  font-family:var(--serif);font-size:clamp(19px,4.4vw,23px);line-height:1.7;position:relative;overflow:hidden}
+.fc::before{content:"";position:absolute;top:0;right:22px;left:22px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--rose),transparent)}
+.fc small{display:block;font-family:var(--num);color:var(--rose);letter-spacing:3px;font-size:13px;margin-bottom:8px;direction:ltr}
+
+/* ========== 8. Envelope ========== */
+.env-wrap{position:relative;width:min(300px,78vw);height:200px;margin:30px auto 40px;perspective:900px}
+.env{position:absolute;inset:0;border-radius:6px 6px 14px 14px;background:linear-gradient(160deg,#5a1736,var(--burgundy));
+  border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.env::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:3;
+  background:linear-gradient(to bottom right,transparent 49.5%,rgba(201,154,139,.25) 50%) left/50% 100% no-repeat,
+             linear-gradient(to bottom left,transparent 49.5%,rgba(201,154,139,.25) 50%) right/50% 100% no-repeat;pointer-events:none}
+.flap{position:absolute;top:0;left:0;right:0;height:62%;z-index:4;transform-origin:top;transition:transform .9s ease .1s,z-index 0s .5s;
+  clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#6b1c40,#4d1230)}
+.seal{position:absolute;top:46%;left:50%;width:38px;height:38px;margin:-19px;z-index:5;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,var(--blush),var(--rose));box-shadow:0 0 22px rgba(242,198,211,.6);
+  transition:opacity .4s;animation:pulse2 2.4s ease-in-out infinite}
+.seal svg{width:16px;height:16px;fill:var(--wine)}
+@keyframes pulse2{50%{box-shadow:0 0 34px rgba(242,198,211,.95)}}
+.env-wrap.open .flap{transform:rotateX(180deg);z-index:1}
+.env-wrap.open .seal{opacity:0;animation:none}
+#letterbox{max-height:0;overflow:hidden;opacity:0;transition:max-height 2s ease,opacity 1.2s ease}
+#letterbox.show{max-height:2400px;opacity:1}
+.letter{max-width:600px;margin:0 auto;padding:36px 26px;border-radius:22px;border:1px solid var(--line);text-align:right;
+  background:linear-gradient(170deg,rgba(255,245,240,.09),rgba(38,8,23,.55));font-family:var(--serif);
+  font-size:clamp(18px,4.3vw,22px);line-height:2.15;position:relative}
+.letter p{margin-bottom:18px;opacity:0;transform:translateY(10px)}
+#letterbox.show .letter p{animation:fin .9s ease forwards,rise .9s ease forwards}
+@keyframes rise{to{transform:none}}
+.letter .sign{color:var(--blush);margin-top:26px}
+
+/* ========== 9. Footer ========== */
+footer{padding:90px 22px 110px;text-align:center}
+footer .date{font-family:var(--num);letter-spacing:5px;color:var(--rose);direction:ltr;font-size:clamp(15px,4vw,19px)}
+footer .q{font-family:var(--serif);font-size:clamp(24px,6vw,36px);color:var(--blush);margin:26px 0;line-height:1.6}
+footer .names{font-family:var(--serif);font-size:22px;margin-bottom:38px}
+
+/* ========== 10. Effects & reveal ========== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.heart-fx{position:fixed;z-index:200;pointer-events:none;color:var(--blush);font-size:18px;text-shadow:0 0 12px rgba(242,198,211,.7);
+  animation:floatup 1.8s ease-out forwards}
+@keyframes floatup{to{transform:translate(var(--x,0),-130px) scale(1.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="locked">
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<!-- ===== Opening scene ===== -->
+<div id="intro">
+  <div class="big fade-in">11:11</div>
+  <div class="tag fade-in d1">A moment, just for you.</div>
+  <div class="line fade-in d2">“فاطمة، عندي لج شي صغير…”</div>
+  <button class="btn fade-in d3" id="openBtn" type="button">افتحي مفاجأتج ❤️</button>
+</div>
+
+<main id="main">
+  <!-- ===== Hero ===== -->
+  <section id="hero">
+    <p class="from reveal">إلى فاطمة،<br>من محمد ❤️</p>
+    <h1 class="reveal" style="--d:.15s">بعض الصدف ما تتكرر…<br><em>وأنتِ أجمل صدفة.</em></h1>
+    <p class="lead reveal" style="--d:.3s">مو كل الأمنيات تحتاج نتمنّاها،<br>بعضها يجي على هيئة إنسان.</p>
+    <div class="clock reveal" style="--d:.45s" aria-label="11:11">
+      <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <circle cx="100" cy="100" r="96" stroke="#C99A8B" stroke-opacity=".35" stroke-width=".8"/>
+        <circle cx="100" cy="100" r="84" stroke="#F2C6D3" stroke-opacity=".18" stroke-width=".8" stroke-dasharray="2 6"/>
+        <g id="ticks" stroke="#C99A8B" stroke-opacity=".6" stroke-width="1"></g>
+        <circle cx="100" cy="4" r="3" fill="#F2C6D3"/>
+      </svg>
+      <div class="t">11<i>:</i>11</div>
+    </div>
+    <div class="scroll-hint reveal" style="--d:.6s">↓</div>
+  </section>
+
+  <!-- ===== 11 reasons ===== -->
+  <section id="reasons">
+    <div class="rule"></div>
+    <h2 class="reveal">11 سبب يخليني أحبج</h2>
+    <p class="sub reveal">اضغطي على كل بطاقة…</p>
+    <div class="grid" id="cards"></div>
+    <div class="counter" id="counter">0 / 11</div>
+  </section>
+
+  <!-- ===== Music ===== -->
+  <section id="music">
+    <div class="rule"></div>
+    <h2 class="reveal">أغنية اختارتج</h2>
+    <p class="sub reveal">لأن بعض الأغاني تحجي عن أشياء ما نعرف نعبر عنها.</p>
+    <div class="music reveal" style="--d:.15s">
+      <div class="disc" id="disc"></div>
+      <div class="actions" id="musicActions"></div>
+      <div id="player"></div>
+      <p class="note">اختاري تسمعينها وإنتِ تقرين.</p>
+    </div>
+  </section>
+
+  <!-- ===== Future ===== -->
+  <section id="future">
+    <div class="rule"></div>
+    <h2 class="reveal">أشياء أتمنى نعيشها سوا</h2>
+    <p class="sub reveal">&nbsp;</p>
+    <div class="future" id="futureGrid"></div>
+  </section>
+
+  <!-- ===== Secret message ===== -->
+  <section id="secret">
+    <div class="rule"></div>
+    <h2 class="reveal">باقي شي صغير…</h2>
+    <div class="env-wrap reveal" id="env" style="--d:.15s" aria-hidden="true">
+      <div class="env"></div>
+      <div class="flap"></div>
+      <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.9 4.5 6.5 4.5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 3.600 0 5.600 3.900 4.100 7.300C19.500 16.400 12 21 12 21z"/></svg></div>
+    </div>
+    <button class="btn reveal" id="secretBtn" type="button" style="--d:.3s">افتحي الرسالة السرية</button>
+    <div id="letterbox" aria-live="polite">
+      <div class="letter">
+        <p>فاطمة…</p>
+        <p>يمكن اليوم مجرد تاريخ وأرقام بالنسبة للعالم، بس بالنسبة إلي حبيت أخليه ذكرى صغيرة إلنا.</p>
+        <p>أريدج تعرفين إنج مو مجرد شخص أحبه، إنتِ شخص أتمنى أشاركه أيامي وتفاصيلي، وأضحك وياه على أبسط الأشياء، وأرجع إله مهما كان يومي متعب.</p>
+        <p>أتمنى تبقين دائماً مرتاحة ومطمئنة، وتعرفين إن أكو شخص يشوفج أجمل من كل الكلام اللي ممكن ينكتب.</p>
+        <p>وإذا أگدر أتمنى أمنية بهالـ 11:11، فهي إن كل الأيام الجاية تحمل إلنا أشياء أحلى، وإن تبقين قريبة من قلبي مثل ما إنتِ هسه.</p>
+        <p class="sign">من محمد،<br>إلى فاطمة، بكل الحب ❤️</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Final screen ===== -->
+<footer>
+  <div class="date reveal">11:11 — 11 November 2026</div>
+  <div class="q reveal" style="--d:.15s">مو كل الأمنيات تنكتب…<br>بعضها يكون إلها اسم.</div>
+  <div class="names reveal" style="--d:.3s">محمد × فاطمة</div>
+  <button class="btn ghost reveal" id="replayBtn" type="button" style="--d:.45s">أعيدي اللحظة ✨</button>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — change the song by editing this single line.
+   Supports: YouTube link, Spotify link, or a direct audio file
+   (.mp3 .m4a .wav .ogg .aac). Anything else becomes an open-link.
+   ============================================================ */
+const SONG_URL = "https://youtu.be/amy2fttDCb8?si=K0gSJ2VGMyq47Sk8";
+
+/* ---------- Data ---------- */
+const REASONS = [
+  "لأن ضحكتج وحدها تكفي تغيّر يومي.",
+  "لأن وجودج يخلّي الأشياء العادية مميزة.",
+  "لأن أحب عفويتج حتى بأبسط التفاصيل.",
+  "لأن صوتج من الأشياء اللي ما أمل منها.",
+  "لأن وياج أگدر أكون على طبيعتي.",
+  "لأن حتى زعلج إله مكان بقلبي.",
+  "لأن أحب تفاصيلج اللي يمكن إنتِ ما تنتبهين إلها.",
+  "لأنج تعرفين تخلين قلبي يبتسم.",
+  "لأن أحب أحجي وياج حتى لو ما عدنا موضوع.",
+  "لأن أتخيل وياج مستقبل مليان تفاصيل حلوة.",
+  "لأنج ببساطة فاطمة، وهذا وحده سبب كافي."
+];
+const FUTURE = [
+  "صباح يبدأ بوجودج.",
+  "بيت يجمع ضحكتنا.",
+  "سفرات وذكريات ما تنسى.",
+  "ليالي طويلة من الحجي.",
+  "تفاصيل يومية بسيطة تصير أجمل بوجودج.",
+  "حضن ينهي تعب يوم كامل."
+];
+const HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.9 4.5 6.5 4.5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 3.6 0 5.6 3.9 4.1 7.3C19.5 16.400 12 21 12 21z"/></svg>';
+const $ = (s) => document.querySelector(s);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Build cards ---------- */
+const cardsEl = $('#cards');
+REASONS.forEach((txt, i) => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'card reveal';
+  b.style.setProperty('--d', (i % 4) * 0.08 + 's');
+  b.setAttribute('aria-expanded', 'false');
+  b.setAttribute('aria-label', 'السبب رقم ' + (i + 1));
+  b.innerHTML = '<div class="in"><div class="face front"><span class="n">' + String(i + 1).padStart(2, '0') +
+    '</span>' + HEART_SVG + '</div><div class="face back">' + txt + '</div></div>';
+  b.addEventListener('click', () => {
+    b.classList.toggle('open');
+    b.setAttribute('aria-expanded', b.classList.contains('open'));
+    $('#counter').textContent = document.querySelectorAll('.card.open').length + ' / 11';
+  });
+  cardsEl.appendChild(b);
+});
+
+/* ---------- Build future cards ---------- */
+FUTURE.forEach((txt, i) => {
+  const d = document.createElement('div');
+  d.className = 'fc reveal';
+  d.style.setProperty('--d', (i % 3) * 0.12 + 's');
+  d.innerHTML = '<small>0' + (i + 1) + '</small>' + txt;
+  $('#futureGrid').appendChild(d);
+});
+
+/* ---------- Decorative clock ticks ---------- */
+(function () {
+  let g = '';
+  for (let i = 0; i < 60; i++) {
+    const a = i * 6 * Math.PI / 180, r1 = i % 5 ? 90 : 87, r2 = 92;
+    g += '<line x1="' + (100 + r1 * Math.sin(a)).toFixed(1) + '" y1="' + (100 - r1 * Math.cos(a)).toFixed(1) +
+         '" x2="' + (100 + r2 * Math.sin(a)).toFixed(1) + '" y2="' + (100 - r2 * Math.cos(a)).toFixed(1) + '"/>';
+  }
+  $('#ticks').innerHTML = g;
+})();
+
+/* ---------- Music (driven by SONG_URL) ---------- */
+function parseSong(url) {
+  url = (url || '').trim();
+  if (!url || /PUT_AMR_DIAB/i.test(url)) return { type: 'unset' };
+  let m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/i);
+  if (m) return { type: 'youtube', src: 'https://www.youtube.com/embed/' + m[1] + '?rel=0&playsinline=1&modestbranding=1', link: url };
+  m = url.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show)\/(\w+)/i);
+  if (m) return { type: 'spotify', src: 'https://open.spotify.com/embed/' + m[1] + '/' + m[2], link: url };
+  if (/\.(mp3|m4a|wav|ogg|aac|flac)(\?.*)?$/i.test(url)) return { type: 'audio', src: url, link: url };
+  return { type: 'link', link: url };
+}
+(function initMusic() {
+  const song = parseSong(SONG_URL), box = $('#musicActions'), player = $('#player'), disc = $('#disc');
+  if (song.type === 'unset') {
+    box.innerHTML = '<p class="msg-unset">ضيفي رابط الأغنية بالمتغير SONG_URL داخل الملف.</p>';
+    return;
+  }
+  const ext = '<a class="btn ghost" href="' + song.link + '" target="_blank" rel="noopener noreferrer">افتحيها برا الموقع</a>';
+  if (song.type === 'link') { box.innerHTML = '<a class="btn" href="' + song.link + '" target="_blank" rel="noopener noreferrer">افتحي الأغنية</a>'; return; }
+  box.innerHTML = '<button class="btn" id="playBtn" type="button">شغّلي الأغنية</button>' + ext;
+  $('#playBtn').addEventListener('click', function () {
+    if (player.classList.contains('show')) return;
+    if (song.type === 'audio') {
+      const a = document.createElement('audio');
+      a.controls = true; a.preload = 'none'; a.src = song.src;
+      a.addEventListener('play', () => disc.classList.add('on'));
+      a.addEventListener('pause', () => disc.classList.remove('on'));
+      a.addEventListener('error', () => { player.innerHTML = '<p class="msg-unset">تعذّر تشغيل الملف، جربي الرابط الخارجي.</p>'; });
+      player.appendChild(a);
+    } else {
+      const f = document.createElement('iframe');
+      f.src = song.src; f.loading = 'lazy'; f.title = 'أغنية لفاطمة';
+      f.allow = 'autoplay; encrypted-media; clipboard-write; picture-in-picture; fullscreen';
+      f.setAttribute('allowfullscreen', '');
+      f.style.height = song.type === 'spotify' ? '152px' : '';
+      if (song.type === 'youtube') f.style.aspectRatio = '16/9';
+      player.appendChild(f);
+    }
+    player.classList.add('show');
+    this.style.display = 'none';
+  });
+})();
+
+/* ---------- Floating stars / particles ---------- */
+const cv = $('#sky'), cx = cv.getContext('2d');
+let W, H, stars = [], dpr = Math.min(window.devicePixelRatio || 1, 2);
+function resize() {
+  W = innerWidth; H = innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.round(Math.min(90, W * H / 11000));
+  stars = Array.from({ length: n }, () => ({
+    x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.4 + .3,
+    s: Math.random() * .25 + .05, p: Math.random() * 6.28, c: Math.random() < .35 ? '242,198,211' : '255,245,240'
+  }));
+}
+function draw(t) {
+  cx.clearRect(0, 0, W, H);
+  for (const s of stars) {
+    const a = .25 + .55 * (.5 + .5 * Math.sin(t / 1100 + s.p));
+    cx.fillStyle = 'rgba(' + s.c + ',' + a.toFixed(2) + ')';
+    cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, 6.283); cx.fill();
+    if (!reduced) { s.y -= s.s; if (s.y < -4) { s.y = H + 4; s.x = Math.random() * W; } }
+  }
+  if (!reduced) requestAnimationFrame(draw);
+}
+addEventListener('resize', resize); resize(); requestAnimationFrame(draw);
+
+/* ---------- Heart burst on click ---------- */
+function burst(x, y, n) {
+  if (reduced) return;
+  for (let i = 0; i < n; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart-fx'; h.textContent = '♥';
+    h.style.left = (x + (Math.random() * 30 - 15)) + 'px'; h.style.top = y + 'px';
+    h.style.setProperty('--x', (Math.random() * 80 - 40) + 'px');
+    h.style.fontSize = (12 + Math.random() * 14) + 'px';
+    h.style.animationDelay = (i * 60) + 'ms';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 2200);
+  }
+}
+document.addEventListener('pointerdown', (e) => {
+  if (e.target.closest('button,a,iframe,audio')) burst(e.clientX, e.clientY, 2);
+});
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver((es) => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- Opening / replay ---------- */
+const intro = $('#intro');
+function openExperience() {
+  intro.classList.add('leave');
+  document.body.classList.remove('locked');
+  scrollTo({ top: 0, behavior: 'auto' });
+  const r = $('#openBtn').getBoundingClientRect();
+  burst(r.left + r.width / 2, r.top, 6);
+  // replay hero reveal animations
+  document.querySelectorAll('#hero .reveal').forEach(el => {
+    el.classList.remove('in'); void el.offsetWidth; setTimeout(() => el.classList.add('in'), 500);
+  });
+}
+$('#openBtn').addEventListener('click', openExperience);
+
+/* ---------- Secret envelope ---------- */
+$('#secretBtn').addEventListener('click', function () {
+  $('#env').classList.add('open');
+  const lb = $('#letterbox');
+  setTimeout(() => {
+    lb.classList.add('show');
+    lb.querySelectorAll('p').forEach((p, i) => p.style.animationDelay = (.4 + i * .9) + 's');
+    const r = lb.getBoundingClientRect();
+    lb.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    [0, 900, 1800, 2700].forEach(t => setTimeout(() => burst(innerWidth * (.25 + Math.random() * .5), innerHeight * .7, 3), t));
+  }, 700);
+  this.style.display = 'none';
+});
+
+/* ---------- Replay the moment ---------- */
+$('#replayBtn').addEventListener('click', () => {
+  // reset interactive state
+  document.querySelectorAll('.card.open').forEach(c => { c.classList.remove('open'); c.setAttribute('aria-expanded', 'false'); });
+  $('#counter').textContent = '0 / 11';
+  $('#env').classList.remove('open');
+  $('#letterbox').classList.remove('show');
+  $('#secretBtn').style.display = '';
+  // restart intro animations
+  intro.querySelectorAll('.fade-in').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
+  document.body.classList.add('locked');
+  scrollTo({ top: 0, behavior: 'auto' });
+  intro.classList.remove('leave');
+});
+
+/* ---------- Loading transition ---------- */
+addEventListener('load', () => requestAnimationFrame(() => document.body.classList.add('ready')));
+setTimeout(() => document.body.classList.add('ready'), 2500); // safety net
+</script>
+</body>
+</html>
