@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lab Library · mohamed.codes</title>
+  <meta name="description" content="A library of lab code — Python, MATLAB, C/C++, Java, Assembly and more — syntax-highlighted and ready to copy.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0d12">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lab Library · mohamed.codes">
+  <meta property="og:description" content="Syntax-highlighted lab code, ready to copy.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/assets/images/my-avatar.png" type="image/png">
+
+  <script>
+    try { if (localStorage.getItem('lab-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/lab/css/lab.css">
+</head>
+
+<body class="lab-app">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="/" aria-label="mohamed.codes — back to portfolio">
+        <span class="wordmark-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span class="wordmark-text">mohamed<span class="wordmark-dot">.codes</span></span>
+      </a>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <span class="crumb crumb-current" aria-current="page">Lab Library</span>
+      </nav>
+      <div class="topbar-actions">
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle light / dark theme" title="Toggle theme">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <header class="lib-head">
+      <p class="eyebrow">mohamed.codes / lab</p>
+      <h1 class="lib-title">Lab Library</h1>
+      <p class="lib-sub">Lab code from my courses — open any lab, copy it in one click, or share its short link.</p>
+      <p class="lib-count mono" id="lib-count" aria-live="polite">Loading…</p>
+    </header>
+
+    <div class="toolbar" role="search">
+      <label class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <span class="visually-hidden">Search labs</span>
+        <input id="lib-search" type="search" placeholder="Search by title, subject or #id…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      </label>
+      <label class="select">
+        <span class="visually-hidden">Filter by language</span>
+        <select id="lib-lang">
+          <option value="">All languages</option>
+        </select>
+      </label>
+      <label class="select">
+        <span class="visually-hidden">Sort order</span>
+        <select id="lib-sort">
+          <option value="asc">ID ↑ oldest first</option>
+          <option value="desc">ID ↓ newest first</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="lib-list" class="lib-list" aria-busy="true">
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+    </div>
+
+    <section id="lib-state" class="state state-inline" hidden>
+      <p class="state-code mono" id="lib-state-code"></p>
+      <h2 class="state-title" id="lib-state-title"></h2>
+      <p class="state-text" id="lib-state-text"></p>
+      <div class="state-actions" id="lib-state-actions"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <a href="/">mohamed.codes</a> · Lab Library</span>
+    <a href="/">Portfolio</a>
+  </footer>
+
+  <script src="/assets/lab/js/lab-core.js"></script>
+  <script src="/assets/lab/js/library.js"></script>
+</body>
+</html>

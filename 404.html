@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--
+  Lab Library viewer + site-wide 404 page.
+
+  GitHub Pages serves this file for any URL that has no matching file, so
+  /lab/<id> works for every id in data/labs.json without creating new pages.
+  At deploy time the workflow also copies this file to lab/<id>.html so known
+  labs are served with HTTP 200. All asset paths MUST stay root-absolute (/...)
+  because this page is served from arbitrary depths.
+-->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lab Library · mohamed.codes</title>
+  <meta name="description" content="Lab code library — syntax-highlighted lab code, ready to copy.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0d12">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lab Library · mohamed.codes">
+  <meta property="og:description" content="Syntax-highlighted lab code, ready to copy.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/assets/images/my-avatar.png" type="image/png">
+
+  <script>
+    try { if (localStorage.getItem('lab-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/lab/css/lab.css">
+</head>
+
+<body class="lab-app" data-view="loading">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="/" aria-label="mohamed.codes — back to portfolio">
+        <span class="wordmark-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span class="wordmark-text">mohamed<span class="wordmark-dot">.codes</span></span>
+      </a>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <a class="crumb" href="/lab/">Lab Library</a>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <span class="crumb crumb-current" id="crumb-id" aria-current="page">…</span>
+      </nav>
+      <div class="topbar-actions">
+        <span class="lang-badge" id="header-lang" hidden></span>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle light / dark theme" title="Toggle theme">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+
+    <!-- Loading -->
+    <section id="view-loading" class="view" aria-busy="true" aria-label="Loading lab">
+      <div class="skeleton skeleton-eyebrow"></div>
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-code"></div>
+    </section>
+
+    <!-- Lab -->
+    <article id="view-lab" class="view" hidden>
+      <header class="lab-head">
+        <p class="eyebrow" id="lab-subject"></p>
+        <h1 class="lab-title" id="lab-title"></h1>
+        <p class="lab-desc" id="lab-desc"></p>
+
+        <dl class="meta">
+          <div class="meta-item"><dt>ID</dt><dd id="meta-id" class="mono"></dd></div>
+          <div class="meta-item"><dt>Language</dt><dd><span class="lang-dot" id="meta-lang"></span></dd></div>
+          <div class="meta-item" id="meta-updated"><dt>Updated</dt><dd><time id="meta-updated-time"></time></dd></div>
+          <div class="meta-item"><dt>Size</dt><dd id="meta-lines" class="mono"></dd></div>
+        </dl>
+
+        <div class="actions" role="toolbar" aria-label="Lab actions">
+          <button class="btn btn-primary" type="button" data-action="copy-code">
+            <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="btn-label">Copy Code</span>
+          </button>
+          <button class="btn" type="button" data-action="copy-link">
+            <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="btn-label">Copy Link</span>
+          </button>
+          <button class="btn" type="button" data-action="share" hidden>
+            <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/></svg>
+            <svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="btn-label">Share</span>
+          </button>
+          <button class="btn" type="button" data-action="download">
+            <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+            <svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="btn-label">Download</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="code-panel" aria-label="Source code">
+        <div class="code-bar">
+          <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="code-filename mono" id="code-filename"></span>
+          <span class="code-lang mono" id="code-lang"></span>
+          <button class="icon-btn icon-btn-sm" type="button" data-action="copy-code" aria-label="Copy code" title="Copy code">
+            <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="btn-label visually-hidden">Copy</span>
+          </button>
+        </div>
+        <pre class="code-scroll" tabindex="0"><code id="code-body" class="code-body" dir="ltr" translate="no"></code></pre>
+      </section>
+
+      <nav class="pager" aria-label="Other labs">
+        <a class="pager-link pager-prev" id="pager-prev" hidden>
+          <span class="pager-hint">← Previous</span>
+          <span class="pager-title"></span>
+        </a>
+        <a class="pager-link pager-next" id="pager-next" hidden>
+          <span class="pager-hint">Next →</span>
+          <span class="pager-title"></span>
+        </a>
+      </nav>
+    </article>
+
+    <!-- Not found / invalid -->
+    <section id="view-notfound" class="view state" hidden>
+      <p class="state-code mono" id="nf-code">404</p>
+      <h1 class="state-title" id="nf-title">Not found</h1>
+      <p class="state-text" id="nf-text"></p>
+      <div class="state-actions">
+        <a class="btn btn-primary" href="/lab/">Browse Lab Library</a>
+        <a class="btn" href="/">Go to portfolio</a>
+      </div>
+      <ul class="nf-suggest" id="nf-suggest" hidden aria-label="Available labs"></ul>
+    </section>
+
+    <!-- Error -->
+    <section id="view-error" class="view state" hidden>
+      <p class="state-code mono">ERR</p>
+      <h1 class="state-title">Couldn’t load this lab</h1>
+      <p class="state-text" id="err-text"></p>
+      <div class="state-actions">
+        <button class="btn btn-primary" type="button" data-action="retry">Try again</button>
+        <a class="btn" href="/lab/">Lab Library</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <a href="/">mohamed.codes</a> · Lab Library</span>
+    <a href="/lab/">All labs</a>
+  </footer>
+
+  <!-- Manual copy fallback -->
+  <div class="modal" id="manual-copy" hidden role="dialog" aria-modal="true" aria-labelledby="manual-copy-title">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="manual-copy-title">Copy manually</h2>
+        <button class="icon-btn" type="button" data-action="close-manual" aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <p class="modal-hint">The text below is selected. Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>C</kbd>, or long-press and choose <strong>Copy</strong>.</p>
+      <textarea id="manual-copy-text" class="modal-text mono" readonly spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off"></textarea>
+    </div>
+  </div>
+
+  <script src="/assets/lab/js/lab-core.js"></script>
+  <script src="/assets/lab/js/viewer.js"></script>
+</body>
+</html>
