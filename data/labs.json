@@ -2,52 +2,6 @@
   "labs": [
     {
       "id": 1,
-      "title": "Introduction to Python",
-      "subject": "AI with Python",
-      "language": "python",
-      "description": "Variables, lists, loops and functions — a warm-up exercise for the first lab session.",
-      "updatedAt": "2026-11-16",
-      "code": [
-        "# Lab 1 — Introduction to Python",
-        "# مختبر 1: مقدمة في بايثون",
-        "",
-        "def average(values):",
-        "    \"\"\"Return the arithmetic mean of a list of numbers.\"\"\"",
-        "    if not values:",
-        "        return 0.0",
-        "    return sum(values) / len(values)",
-        "",
-        "",
-        "grades = [78, 91, 85, 66, 99]",
-        "name = \"محمد\"",
-        "",
-        "for index, grade in enumerate(grades, start=1):",
-        "    status = \"pass\" if grade >= 70 else \"fail\"",
-        "    print(f\"Student {index}: {grade:>3}  ->  {status}\")",
-        "",
-        "print(f\"Hello, {name}! Class average = {average(grades):.2f}\")"
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Image Reading and Display",
-      "subject": "Image Processing",
-      "language": "matlab",
-      "description": "Read an image, convert it to grayscale, and compare it with its histogram-equalized version.",
-      "updatedAt": "2026-11-16",
-      "code": "% Lab 2 - Image Reading and Display\nclc; clear; close all;\n\nI = imread('peppers.png');      % RGB image\nG = rgb2gray(I);                % convert to grayscale\nE = histeq(G);                  % histogram equalization\n\nfigure('Name', 'Lab 2');\nsubplot(2, 2, 1); imshow(I); title('Original');\nsubplot(2, 2, 2); imshow(G); title('Grayscale');\nsubplot(2, 2, 3); imhist(G); title('Histogram');\nsubplot(2, 2, 4); imshow(E); title('Equalized');\n\nfprintf('Image size: %d x %d\\n', size(G, 1), size(G, 2));\n"
-    },
-    {
-      "id": 3,
-      "title": "8086 Assembly Exercise",
-      "subject": "Microprocessor Lab",
-      "language": "assembly",
-      "description": "Sum an array of bytes and store the result — uses tabs for alignment, as written in the lab sheet.",
-      "updatedAt": "2026-11-16",
-      "code": "; Lab 3 - Sum of an array (8086, MASM/TASM syntax)\n.MODEL SMALL\n.STACK 100h\n\n.DATA\n\tARR\tDB\t05h, 0Ah, 14h, 1Eh, 28h\n\tLEN\tEQU\t5\n\tSUM\tDW\t?\n\n.CODE\nMAIN PROC\n\tMOV\tAX, @DATA\n\tMOV\tDS, AX\n\n\tXOR\tAX, AX\t\t; AX = 0 (running sum)\n\tMOV\tCX, LEN\t\t; loop counter\n\tLEA\tSI, ARR\t\t; SI -> first element\n\nNEXT:\n\tADD\tAL, [SI]\n\tADC\tAH, 0\n\tINC\tSI\n\tLOOP\tNEXT\n\n\tMOV\tSUM, AX\n\n\tMOV\tAH, 4Ch\t\t; return to DOS\n\tINT\t21h\nMAIN ENDP\nEND MAIN\n"
-    },
-    {
-      "id": 4,
       "title": "Python Lab 1 — Exercise 1: Greeting Program",
       "subject": "Python Programming",
       "language": "python",
@@ -68,7 +22,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 2,
       "title": "Python Lab 1 — Exercise 2: Temperature Converter",
       "subject": "Python Programming",
       "language": "python",
@@ -93,7 +47,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 3,
       "title": "Python Lab 1 — Exercise 3: Circle Area Calculator",
       "subject": "Python Programming",
       "language": "python",
@@ -118,7 +72,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": 4,
       "title": "Python Lab 1 — Exercise 4: Simple Calculator",
       "subject": "Python Programming",
       "language": "python",
@@ -151,7 +105,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": 5,
       "title": "Python Lab 1 — Exercise 5: Number System Converter",
       "subject": "Python Programming",
       "language": "python",
@@ -178,7 +132,7 @@
       ]
     },
     {
-      "id": 9,
+      "id": 6,
       "title": "Python Lab 2 — Exercise 1: Signal String",
       "subject": "Python Programming",
       "language": "python",
@@ -200,7 +154,7 @@
       ]
     },
     {
-      "id": 10,
+      "id": 7,
       "title": "Python Lab 2 — Exercise 2: List of Sensor Readings",
       "subject": "Python Programming",
       "language": "python",
@@ -223,7 +177,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": 8,
       "title": "Python Lab 2 — Exercise 3: Tuple of Coordinates",
       "subject": "Python Programming",
       "language": "python",
@@ -244,7 +198,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": 9,
       "title": "Python Lab 2 — Exercise 4: Dictionary and Set",
       "subject": "Python Programming",
       "language": "python",
@@ -267,7 +221,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 10,
       "title": "Python Lab 2 — Exercise 5: Network Status",
       "subject": "Python Programming",
       "language": "python",
@@ -292,7 +246,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 11,
       "title": "Python Lab 2 — Exercise 6: Loops Practice",
       "subject": "Python Programming",
       "language": "python",
@@ -324,7 +278,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 12,
       "title": "Python Lab 2 — Exercise 7: Reading Statistics Function",
       "subject": "Python Programming",
       "language": "python",
@@ -351,7 +305,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 13,
       "title": "Python Lab 3 — Exercise 1: Lambda on Arrays",
       "subject": "Python Programming",
       "language": "python",
@@ -374,7 +328,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 14,
       "title": "Python Lab 3 — Exercise 2: Creating and Reshaping Arrays",
       "subject": "Python Programming",
       "language": "python",
@@ -401,7 +355,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 15,
       "title": "Python Lab 3 — Exercise 3: Slicing a Matrix",
       "subject": "Python Programming",
       "language": "python",
@@ -426,7 +380,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 16,
       "title": "Python Lab 3 — Exercise 4: Student Marks Table",
       "subject": "Python Programming",
       "language": "python",
@@ -457,7 +411,7 @@
       ]
     },
     {
-      "id": 20,
+      "id": 17,
       "title": "Python Lab 3 — Exercise 5: Temperature Readings",
       "subject": "Python Programming",
       "language": "python",
@@ -483,7 +437,7 @@
       ]
     },
     {
-      "id": 21,
+      "id": 18,
       "title": "Python Lab 3 — Exercise 6: Solving a Circuit with Linear Algebra",
       "subject": "Python Programming",
       "language": "python",
